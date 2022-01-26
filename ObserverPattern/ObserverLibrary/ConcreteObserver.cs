@@ -9,15 +9,9 @@ namespace ObserverLibrary
 {
     public class ConcreteObserver : IObserver
     {
-        public void Update()
+        public string Update()
         {
-            Output($"{GetType()} - UPDATED!");
-        }
-
-        // remove later 
-        private void Output(string text)
-        {
-            Console.WriteLine(text);
+            return $"{GetType()} - UPDATED!";
         }
     }
 }

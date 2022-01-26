@@ -19,12 +19,12 @@ namespace ObserverPattern
             cSubject.RegisterObserver(cObserver2);
 
             cSubject.State = "new state";
-
-            Console.WriteLine("agsdaf");
+            Console.WriteLine(cSubject.NotificationOutput);
 
             cSubject.RemoveObserver(cObserver2);
 
             cSubject.State = "yet another state";
+            Console.WriteLine(cSubject.NotificationOutput);
 
             Console.ReadKey();
         }

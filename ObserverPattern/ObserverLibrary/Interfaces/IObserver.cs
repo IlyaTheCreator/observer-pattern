@@ -8,6 +8,6 @@ namespace ObserverLibrary.Interfaces
 {
     public interface IObserver
     {
-        void Update();
+        string Update();
     }
 }
