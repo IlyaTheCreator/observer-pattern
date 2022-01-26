@@ -9,9 +9,16 @@ namespace ObserverLibrary
 {
     public class ConcreteObserver : IObserver
     {
-        public string Update()
+        private int _numberOfUpdates;
+
+        public int NumberOfUpdates
         {
-            return $"{GetType()} - UPDATED!";
+            get => _numberOfUpdates;
+        }
+
+        public void Update()
+        {
+            _numberOfUpdates++;
         }
     }
 }

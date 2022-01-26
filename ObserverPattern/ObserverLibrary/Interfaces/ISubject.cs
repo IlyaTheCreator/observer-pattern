@@ -10,6 +10,5 @@ namespace ObserverLibrary.Interfaces
     {
         void RegisterObserver(IObserver observer);
         void RemoveObserver(IObserver observer);
-        string NotifyObservers();
     }
 }

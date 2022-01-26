@@ -11,24 +11,19 @@ namespace ObserverLibrary
     {
         private string _state;
         List<IObserver> _observers = new List<IObserver>();
-        public string NotificationOutput { get; set; }
 
         public string State {
             get => _state;
             set
             {
                 _state = value;
-                NotificationOutput = NotifyObservers();
+                NotifyObservers();
             }
         }
 
-        public string NotifyObservers()
+        public void NotifyObservers()
         {
-            string output = "";
-
-            _observers.ForEach(observer => output += $"{observer.Update()} \n");
-
-            return output;
+            _observers.ForEach(observer => observer.Update());
         }
 
         public void RegisterObserver(IObserver observer)

@@ -16,15 +16,29 @@ namespace ObserverPattern
             ConcreteObserver cObserver2 = new ConcreteObserver();
 
             cSubject.RegisterObserver(cObserver1);
-            cSubject.RegisterObserver(cObserver2);
 
             cSubject.State = "new state";
-            Console.WriteLine(cSubject.NotificationOutput);
+
+            Console.WriteLine(cObserver1.NumberOfUpdates);
+            Console.WriteLine(cObserver2.NumberOfUpdates);
+
+            Console.WriteLine();
+
+            cSubject.RegisterObserver(cObserver2);
+
+            cSubject.State = "yet another state";
+
+            Console.WriteLine(cObserver1.NumberOfUpdates);
+            Console.WriteLine(cObserver2.NumberOfUpdates);
+
+            Console.WriteLine();
 
             cSubject.RemoveObserver(cObserver2);
 
-            cSubject.State = "yet another state";
-            Console.WriteLine(cSubject.NotificationOutput);
+            cSubject.State = "state changed again";
+
+            Console.WriteLine(cObserver1.NumberOfUpdates);
+            Console.WriteLine(cObserver2.NumberOfUpdates);
 
             Console.ReadKey();
         }
