@@ -1,4 +1,6 @@
 ﻿using ObserverLibrary;
+using ObserverLibrary.Interfaces;
+using ObserverLibrary.Observers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,34 +13,28 @@ namespace ObserverPattern
     {
         public static void Main(string[] args)
         {
-            ConcreteSubject cSubject = new ConcreteSubject() { State = "bruh" };
-            ConcreteObserver cObserver1 = new ConcreteObserver();
-            ConcreteObserver cObserver2 = new ConcreteObserver();
+            WeatherData weatherData = new WeatherData();
+            CurrentConditionsDisplay currentConditionsDisplay = new CurrentConditionsDisplay();
+            ForecastDisplay forecastDisplay = new ForecastDisplay();
+            StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
 
-            cSubject.RegisterObserver(cObserver1);
+            List<IDisplayElement> displays = new List<IDisplayElement>() {
+                currentConditionsDisplay,
+                forecastDisplay,
+                statisticsDisplay
+            };
 
-            cSubject.State = "new state";
+            weatherData.RegisterObserver(currentConditionsDisplay);
+            weatherData.RegisterObserver(forecastDisplay);
+            weatherData.RegisterObserver(statisticsDisplay);
 
-            Console.WriteLine(cObserver1.NumberOfUpdates);
-            Console.WriteLine(cObserver2.NumberOfUpdates);
+            foreach (IDisplayElement observer in displays)
+                Console.WriteLine(observer.Display());
 
-            Console.WriteLine();
+            weatherData.MeasurementsChanged();
 
-            cSubject.RegisterObserver(cObserver2);
-
-            cSubject.State = "yet another state";
-
-            Console.WriteLine(cObserver1.NumberOfUpdates);
-            Console.WriteLine(cObserver2.NumberOfUpdates);
-
-            Console.WriteLine();
-
-            cSubject.RemoveObserver(cObserver2);
-
-            cSubject.State = "state changed again";
-
-            Console.WriteLine(cObserver1.NumberOfUpdates);
-            Console.WriteLine(cObserver2.NumberOfUpdates);
+            foreach (IDisplayElement observer in displays)
+                Console.WriteLine(observer.Display());
 
             Console.ReadKey();
         }

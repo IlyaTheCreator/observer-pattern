@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ObserverLibrary.Interfaces
 {
-    public interface IObserver
+    public interface IDisplayElement
     {
-        void Update(Dictionary<string, int> weatherDic);
+        string Display();
     }
 }
